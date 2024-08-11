@@ -1,0 +1,23 @@
+﻿@model IEnumerable<LibrarySystem.Web.ViewModels.RentalViewModel>
+
+<h2>Meus Livros Alugados</h2>
+
+<ul>
+    @foreach (var rental in Model)
+    {
+        <li>
+            <strong>Título:</strong> @rental.BookTitle<br />
+            <strong>Data de Aluguel:</strong> @rental.RentDate.ToShortDateString()<br />
+            @if (!rental.IsReturned)
+            {
+                <form action="@Url.Action("ReturnBook", "Rentals", new { rentalId = rental.Id })" method="post">
+                    <button type="submit">Devolver Livro</button>
+                </form>
+            }
+            else
+            {
+                <span>Devolvido em: @rental.ReturnDate?.ToShortDateString()</span>
+            }
+        </li>
+    }
+</ul>

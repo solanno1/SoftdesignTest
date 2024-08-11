@@ -1,0 +1,37 @@
+﻿@model IEnumerable<LibrarySystem.Web.ViewModels.BookViewModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Lista de livros</h2>
+
+@using (Html.BeginForm("Index", "Books", FormMethod.Get))
+{
+    <input type="text" name="search" placeholder="Busque por titulo" />
+    <button type="submit">Buscar</button>
+}
+
+<ul>
+    @foreach (var book in Model)
+    {
+        <li>
+            @Html.DisplayFor(modelItem => book.Title)
+            <span>
+                @(book.IsRented ? " - Alugado" : "")
+            </span>
+            @if (!book.IsRented)
+            {
+                <form action="@Url.Action("RentBook", "Rentals", new { bookId = book.Id })" method="post">
+                    <button type="submit">Alugar</button>
+                </form>
+            }
+            <a href="@Url.Action("Details", "Books", new { id = book.Id })">Detalhes</a>
+        </li>
+    }
+</ul>
+
+<p>
+    <a href="@Url.Action("RegisterBook", "Books")">Cadastrar Novo Livro</a>
+</p>

@@ -1,0 +1,18 @@
+﻿@model LibrarySystem.Web.ViewModels.RegisterUserViewModel
+
+<h2>Cadastro</h2>
+
+@using (Html.BeginForm("Register", "Users", FormMethod.Post))
+{
+    <div>
+        @Html.LabelFor(m => m.Username)
+        @Html.TextBoxFor(m => m.Username)
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Password)
+        @Html.PasswordFor(m => m.Password)
+    </div>
+    <div>
+        <button type="submit">Cadastrar</button>
+    </div>
+}

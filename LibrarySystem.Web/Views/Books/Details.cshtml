@@ -1,0 +1,14 @@
+﻿@model LibrarySystem.Web.ViewModels.BookViewModel
+
+<h2>Detalhes do Livro</h2>
+
+<p><strong>Título:</strong> @Model.Title</p>
+<p><strong>Autor:</strong> @Model.Author</p>
+<p><strong>Disponibilidade:</strong> @(Model.IsRented ? "Alugado" : "Disponível")</p>
+
+@if (!Model.IsRented)
+{
+    <form action="@Url.Action("RentBook", "Rentals", new { bookId = Model.Id })" method="post">
+        <button type="submit">Alugar</button>
+    </form>
+}
