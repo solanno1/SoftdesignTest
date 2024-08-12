@@ -1,10 +1,6 @@
 ﻿using LibrarySystem.Services.Interfaces;
 using LibrarySystem.Web.ViewModels;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.Http;
 using System.Web.Mvc;
 
 namespace LibrarySystem.Web.Controllers
@@ -39,20 +35,7 @@ namespace LibrarySystem.Web.Controllers
             }).ToList();
 
             return View(rentalViewModels);
-        }
-
-        public ActionResult AvailableBooks()
-        {
-            var books = _bookService.GetBooks(null).Where(b => !b.IsRented).ToList();
-            var bookViewModels = books.Select(book => new BookViewModel
-            {
-                Id = book.Id,
-                Title = book.Title,
-                Author = book.Author,
-                IsRented = book.IsRented
-            }).ToList();
-            return View(bookViewModels);
-        }
+        }        
 
         public ActionResult RentBook(int bookId)
         {

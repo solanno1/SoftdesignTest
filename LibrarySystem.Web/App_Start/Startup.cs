@@ -18,8 +18,7 @@ namespace LibrarySystem.Web
     {
         public void Configuration(IAppBuilder app)
         {
-            HttpConfiguration config = new HttpConfiguration();
-            WebApiConfig.Register(config);
+            HttpConfiguration config = new HttpConfiguration();            
 
             ConfigureOAuth(app);
 
@@ -49,14 +48,11 @@ namespace LibrarySystem.Web
 
         public void ConfigureOAuth(IAppBuilder app)
         {
-            var issuer = "https://localhost:44364/";
-
             OAuthAuthorizationServerOptions OAuthServerOptions = new OAuthAuthorizationServerOptions()
             {
                 AllowInsecureHttp = true,
                 TokenEndpointPath = new PathString("/token"),
-                AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(30),
-                Provider = new ApplicationOAuthProvider(issuer)
+                AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(30)
             };
 
             app.UseOAuthAuthorizationServer(OAuthServerOptions);
