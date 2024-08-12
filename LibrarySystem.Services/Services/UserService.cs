@@ -34,5 +34,10 @@ namespace LibrarySystem.Services.Services
             };
             _userRepository.AddUser(newUser);
         }
+
+        public User GetUserByUsername(string username)
+        {
+            return _userRepository.GetUserByUsername(username);
+        }
     }
 }

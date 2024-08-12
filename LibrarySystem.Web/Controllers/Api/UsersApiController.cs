@@ -3,17 +3,20 @@ using LibrarySystem.Web.ViewModels;
 using System.Collections.Generic;
 using System.Web.Http;
 
-namespace LibrarySystem.Web.Controllers
+namespace LibrarySystem.Web.Controllers.Api
 {
+    [AllowAnonymous]
     [RoutePrefix("api/users")]
     public class UsersApiController : ApiController
     {        
         private readonly IUserService _userService;
-        public UsersApiController(IUserService userService)
+        private readonly IAuthService _authService;
+        public UsersApiController(IUserService userService, IAuthService authService)
         {
             _userService = userService;
+            _authService = authService;
         }
-
+        [AllowAnonymous]
         [HttpPost]
         [Route("login")]
         public IHttpActionResult Login([FromBody] LoginViewModel model)
@@ -22,11 +25,13 @@ namespace LibrarySystem.Web.Controllers
             {
                 var isValid = _userService.ValidateUser(model.Username, model.Password);
                 if(!isValid) return Unauthorized();
+                var token = _authService.GenerateJwtToken(model.Username);
 
-                return Ok("Login bem sucedido!");
+                return Ok(new {Token = token});
             }
             return BadRequest(ModelState);
         }
+        [AllowAnonymous]
         [HttpPost]
         [Route("register")]
         public IHttpActionResult Register([FromBody] RegisterUserViewModel model)

@@ -1,23 +1,28 @@
 ﻿@model IEnumerable<LibrarySystem.Web.ViewModels.RentalViewModel>
 
-<h2>Meus Livros Alugados</h2>
+<link href="~/Content/Styles/books.css" rel="stylesheet" />
+<script src="~/Content/Scripts/books.js"></script>
 
-<ul>
-    @foreach (var rental in Model)
-    {
-        <li>
-            <strong>Título:</strong> @rental.BookTitle<br />
-            <strong>Data de Aluguel:</strong> @rental.RentDate.ToShortDateString()<br />
-            @if (!rental.IsReturned)
-            {
-                <form action="@Url.Action("ReturnBook", "Rentals", new { rentalId = rental.Id })" method="post">
-                    <button type="submit">Devolver Livro</button>
-                </form>
-            }
-            else
-            {
-                <span>Devolvido em: @rental.ReturnDate?.ToShortDateString()</span>
-            }
-        </li>
-    }
-</ul>
+<div class="container">
+    <h2>Meus Livros Alugados</h2>
+
+    <ul>
+        @foreach (var rental in Model)
+        {
+            <li>
+                <strong>Título:</strong> @rental.BookTitle<br />
+                <strong>Data de Aluguel:</strong> @rental.RentDate<br />
+                @if (!rental.IsReturned)
+                {
+                    <form action="@Url.Action("ReturnBook", "Rentals", new { rentalId = rental.Id })" method="post">
+                        <button type="submit" class="return">Devolver Livro</button>
+                    </form>
+                }
+                else
+                {
+                    <span>Devolvido em: @rental.ReturnDate</span>
+                }
+            </li>
+        }
+    </ul>
+</div>

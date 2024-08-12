@@ -3,8 +3,9 @@ using LibrarySystem.Web.ViewModels;
 using System.Collections.Generic;
 using System.Web.Http;
 
-namespace LibrarySystem.Web.Controllers
+namespace LibrarySystem.Web.Controllers.Api
 {
+    [Authorize]
     [RoutePrefix("api/books")]
     public class BooksApiController : ApiController
     {

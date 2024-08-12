@@ -1,0 +1,113 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    position: relative;
+}
+
+.container button.btn-danger {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: #d9534f; 
+    color: #fff;
+    border: none;
+    border-radius: 4px; 
+    cursor: pointer;
+    padding: 5px 10px; 
+}
+
+a.myBooks {
+    position: absolute;
+    color: red;
+    bottom: 40px;
+    right: 20px;
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 5px 10px;
+    
+}
+
+a.newBook {
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 5px 10px;
+    color: #337ab7;
+    text-decoration: none;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+input[type="text"] {
+    width: 70%;
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #337ab7;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+    button[type="submit"]:hover {
+        background-color: #286090;
+    }
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+    li:last-child {
+        border-bottom: none;
+    }
+
+a {
+    color: #337ab7;
+    text-decoration: none;
+}
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+button.alugar {
+    background-color: #5cb85c;
+    margin-left: 10px;
+}
+
+button.return {
+    background-color: #5cb85c;
+    font-size: 14px;
+    padding: 6px 12px;
+}
+
+    button.alugar:hover {
+        background-color: #4cae4c;
+    }

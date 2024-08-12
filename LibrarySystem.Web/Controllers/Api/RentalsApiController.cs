@@ -1,29 +1,37 @@
 ﻿using LibrarySystem.Services.Interfaces;
+using LibrarySystem.Services.Services;
 using LibrarySystem.Web.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 
-namespace LibrarySystem.Web.Controllers
+namespace LibrarySystem.Web.Controllers.Api
 {
+    [Authorize]
     [RoutePrefix("api/rentals")]
     public class RentalsApiController : ApiController
     {
         private readonly IRentalService _rentalService;
         private readonly IBookService _bookService;
-        public RentalsApiController(IRentalService rentalService, IBookService bookService)
+        private readonly IUserService _userService;
+        public RentalsApiController(IRentalService rentalService, IBookService bookService, IUserService userService)
         {
             _rentalService = rentalService;
             _bookService = bookService;
+            _userService = userService;
         }
 
         [HttpPost]
         [Route("rent/{bookId}")]
-        public IHttpActionResult RentBook(int bookId, [FromBody] RentBookViewModel model)
+        public IHttpActionResult RentBook(int bookId)
         {
             if (ModelState.IsValid)
             {
-                var success = _rentalService.RentBook(bookId, model.UserId);
+                var username = User.Identity.Name;
+                var user = _userService.GetUserByUsername(username);
+                if (user == null) return BadRequest(ModelState);
+
+                var success = _rentalService.RentBook(bookId, user.Id);
                 if (!success) return BadRequest("O livro já está alugado");
                 return Ok("Livro alugado com sucesso");
             }

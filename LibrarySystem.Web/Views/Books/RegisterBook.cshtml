@@ -1,18 +1,22 @@
 ﻿@model LibrarySystem.Web.ViewModels.BookViewModel
 
-<h2>Cadastrar Novo Livro</h2>
+<link href="~/Content/Styles/bookRegister.css" rel="stylesheet" />
+<script src="~/Content/Scripts/bookRegister.js"></script>
+<div class="container">
+    <h2>Cadastrar Novo Livro</h2>
 
-@using (Html.BeginForm("RegisterBook", "Books", FormMethod.Post))
-{
-    <div>
-        @Html.LabelFor(m => m.Title)
-        @Html.TextBoxFor(m => m.Title)
-    </div>
-    <div>
-        @Html.LabelFor(m => m.Author)
-        @Html.TextBoxFor(m => m.Author)
-    </div>
-    <div>
-        <button type="submit">Cadastrar Livro</button>
-    </div>
-}
+    @using (Html.BeginForm("RegisterBook", "Books", FormMethod.Post))
+    {
+        <div>
+            @Html.LabelFor(m => m.Title)
+            @Html.TextBoxFor(m => m.Title)
+        </div>
+        <div>
+            @Html.LabelFor(m => m.Author)
+            @Html.TextBoxFor(m => m.Author)
+        </div>
+        <div>
+            <button type="submit">Cadastrar Livro</button>
+        </div>
+    }
+</div>
