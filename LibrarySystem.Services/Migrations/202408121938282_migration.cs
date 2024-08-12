@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class migration : DbMigration
     {
         public override void Up()
         {
@@ -11,13 +11,12 @@
                 "dbo.Books",
                 c => new
                     {
-                        id = c.Int(nullable: false, identity: true),
+                        Id = c.Int(nullable: false, identity: true),
                         Title = c.String(unicode: false),
                         Author = c.String(unicode: false),
-                        Description = c.String(unicode: false),
                         IsRented = c.Boolean(nullable: false),
                     })
-                .PrimaryKey(t => t.id);
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.Rentals",
@@ -26,7 +25,8 @@
                         Id = c.Int(nullable: false, identity: true),
                         BookId = c.Int(nullable: false),
                         UserId = c.Int(nullable: false),
-                        RentalDate = c.DateTime(nullable: false, precision: 0),
+                        RentDate = c.DateTime(nullable: false, precision: 0),
+                        ReturnDate = c.DateTime(precision: 0),
                     })
                 .PrimaryKey(t => t.Id);
             

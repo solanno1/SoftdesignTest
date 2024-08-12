@@ -40,9 +40,9 @@ namespace LibrarySystem.Web.Controllers.Api
 
         [HttpPost]
         [Route("return/{rentalId}")]
-        public IHttpActionResult ReturnBook(int id)
+        public IHttpActionResult ReturnBook(int rentalId)
         {
-            var success = _rentalService.ReturnBook(id);
+            var success = _rentalService.ReturnBook(rentalId);
             if (!success) return BadRequest("Erro ao devolver o livro");
             return Ok("Livro devolvido com sucesso");
         }
@@ -59,7 +59,7 @@ namespace LibrarySystem.Web.Controllers.Api
                 RentDate = rental.RentDate,
                 ReturnDate = rental.ReturnDate
             }).ToList();
-            return Ok(rentals);
+            return Ok(rentalViewModels);
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿// Scripts/books.js
-document.addEventListener('DOMContentLoaded', function () {
+﻿document.addEventListener('DOMContentLoaded', function () {
     const rentButtons = document.querySelectorAll('button.alugar');
 
     rentButtons.forEach(button => {
